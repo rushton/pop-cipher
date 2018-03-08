@@ -8,14 +8,18 @@ import sys
 
 def generate_cipher_text(input_text, songs):
     cipher = []
+    selected_songs = []
     for char in input_text:
         if char == ' ': continue
-        shuffle(songs)
         song = None
-        while not song and song not in cipher:
+        while not song:
+            shuffle(songs)
             song = find_song(char, songs)
-            if song not in cipher:
+            if song.get('song').get('artist') + song.get('song').get('title') not in selected_songs:
                 cipher.append(song)
+                selected_songs.append(song.get('song').get('artist') + song.get('song').get('title'))
+            else:
+                song = None
     return cipher
 
 def find_song(char, songs):
@@ -39,9 +43,9 @@ def main():
             artist = char.get('song').get('artist')
             title = char.get('song').get('title')
             sys.stderr.write(artist + " " + str(char.get('index')) + "\n")
-            for preview_url in [x.get('preview_url') for x in sp.search(q=title, limit=10)['tracks']['items']]:
+            for preview_url in [x.get('preview_url') for x in sp.search(q=artist + " " + title, limit=10)['tracks']['items']]:
                 if preview_url:
-                    print(preview_url + " " + str(char.get('index')))
+                    print(preview_url + " " + str(char.get('index') + 1))
                     break
 
 if __name__ == '__main__':
