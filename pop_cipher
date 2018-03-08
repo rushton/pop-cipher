@@ -1,0 +1,14 @@
+#/bin/bash
+text=$1
+clip_length=${2:-5}
+k=""
+indexes=$(python pop_cipher.py $text --spotify-client-id=$SPOTIFY_CLIENT_ID --spotify-client-secret=$SPOTIFY_CLIENT_SECRET | awk '{print "curl ", $1, "> pop_cipher_"NR".mp3 && echo "$2}' | bash | awk '{printf "%s.", $1}')
+
+for file in $(find . -name "pop_cipher_*.mp3" | sort -n)
+do
+    f=$(echo $file |sed 's#\./##')
+    ffmpeg -y -t 5 -i $f -acodec copy fivesecs.$f &&  lame --decode fivesecs.$f -
+done | lame -a -b 96 - cipher_$(echo $indexes)mp3
+
+echo $indexes
+rm pop_cipher_*.mp3 fivesecs.*mp3
