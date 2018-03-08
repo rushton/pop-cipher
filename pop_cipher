@@ -10,5 +10,4 @@ do
     ffmpeg -y -t 5 -i $f -acodec copy fivesecs.$f &&  lame --decode fivesecs.$f -
 done | lame -a -b 96 - cipher_$(echo $indexes)mp3
 
-echo $indexes
 rm pop_cipher_*.mp3 fivesecs.*mp3
