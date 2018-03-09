@@ -1,5 +1,23 @@
 #/bin/bash
 
+while getopts ":b:s:" opt; do
+  case ${opt} in
+    b )
+      banlist=$OPTARG
+      ;;
+    s )
+      songsfile=$OPTARG
+      ;;
+    \? )
+      echo "Invalid option: $OPTARG" 1>&2
+      ;;
+    : )
+      echo "Invalid option: $OPTARG requires an argument" 1>&2
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
 # input text
 text=$1
 
@@ -7,11 +25,14 @@ text=$1
 clip_length=${2:-5}
 
 # custom songs json file, if not, uses the default provided
-songs_file=${3:-data.json}
+songs_file=${songsfile:-data.json}
+
+# banlist - list of space-delimited strings
+banlist=${banlist:-none}
 
 # run the pop_cipher python script to get the cipher and find the
 # spotify preview urls to download
-indexes=$(python pop_cipher.py $text --spotify-client-id=$SPOTIFY_CLIENT_ID --spotify-client-secret=$SPOTIFY_CLIENT_SECRET --songs-json-file $songs_file | awk '{print "curl ", $1, "> pop_cipher_"NR".mp3 && echo "$2}' | bash | awk '{printf "%s.", $1}')
+indexes=$(python pop_cipher.py $text --spotify-client-id=$SPOTIFY_CLIENT_ID --spotify-client-secret=$SPOTIFY_CLIENT_SECRET --songs-json-file $songs_file --banlist $banlist | awk '{print "curl ", $1, "> pop_cipher_"NR".mp3 && echo "$2}' | bash | awk '{printf "%s.", $1}')
 
 # generate the outfile name for the final mp3
 outfile=$(echo "cipher_"$(echo $indexes)"mp3")
