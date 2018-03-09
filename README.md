@@ -25,14 +25,14 @@ SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher "hi" 7
 
 say the cipher chose:
 
-Rihanna - Birthday Cake
-  ^
+Ri**h**anna - Birthday Cake
+
 and
 
-Robin Thicke - Blurred Lines
-   ^
+Rob**i**n Thicke - Blurred Lines
+ 
 
-the output mp3 file will be named: `cipher_3.4.mp3
+the output mp3 file will be named: `cipher_3.4.mp3`
 
 ## to decode the message
 
@@ -41,7 +41,7 @@ given the above example, we should have a 14 second mp3 with two 7 second clips.
 2. figure out who the artist is
 3. take the first index (3) from the file name
 4. match the index to the nth (3rd) charater of the artist's name
-5. repeat for each index/artist combo
+5. repeat for each clip
 
 ## Using your own songs
 
@@ -51,7 +51,8 @@ to use a set of your own songs, write a file in the format:
     {
         "artist": "<artist>",
         "title": "<title>"
-    }
+    },
+    ...
 ]
 ```
 
