@@ -25,14 +25,14 @@ SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher "hi" 7
 
 say the cipher chose:
 
-Rihanna - Birthday Cake
-  ^
+Ri**h**anna - Birthday Cake
+
 and
 
-Robin Thicke - Blurred Lines
-   ^
+Rob**i**n Thicke - Blurred Lines
+ 
 
-the output mp3 file will be named: `cipher_3.4.mp3
+the output mp3 file will be named: `cipher_3.4.mp3`
 
 ## to decode the message
 
