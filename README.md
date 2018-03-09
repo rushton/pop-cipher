@@ -43,6 +43,14 @@ given the above example, we should have a 14 second mp3 with two 7 second clips.
 4. match the index to the nth (3rd) charater of the artist's name
 5. repeat for each clip
 
+## Filtering out artists
+
+to prevent certain artists from appearing in the cipher, pass a space-separated list to the banlist flag, -b
+
+```
+SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher -b Nickelback ICP "hi" 7
+```
+
 ## Using your own songs
 
 to use a set of your own songs, write a file in the format:
@@ -56,7 +64,7 @@ to use a set of your own songs, write a file in the format:
 ]
 ```
 
-then pass the file to pop_cipher command:
+then pass the file to pop_cipher command with the -s flag:
 ```
-SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher "hi" 7 my_songs_file.json
+SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher -s my_songs_file.json "hi" 7
 ```
