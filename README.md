@@ -41,7 +41,7 @@ given the above example, we should have a 14 second mp3 with two 7 second clips.
 2. figure out who the artist is
 3. take the first index (3) from the file name
 4. match the index to the nth (3rd) charater of the artist's name
-5. repeat for each index/artist combo
+5. repeat for each clip
 
 ## Using your own songs
 
