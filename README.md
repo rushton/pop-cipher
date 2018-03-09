@@ -51,7 +51,8 @@ to use a set of your own songs, write a file in the format:
     {
         "artist": "<artist>",
         "title": "<title>"
-    }
+    },
+    ...
 ]
 ```
 
