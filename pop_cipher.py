@@ -6,7 +6,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import sys
 
-def generate_cipher_text(input_text, songs):
+def generate_cipher(input_text, songs):
     cipher = []
     selected_songs = []
     for char in input_text:
@@ -30,7 +30,7 @@ def find_song(char, songs):
 def main():
     parser = ArgumentParser(description="Create cipher using pop music")
     parser.add_argument("input_text", type=str)
-    parser.add_argument("--songs_json_file", type=str, default="data.json")
+    parser.add_argument("--songs-json-file", type=str, default="data.json")
     parser.add_argument("--spotify-client-id", type=str, default=None)
     parser.add_argument("--spotify-client-secret", type=str, default=None)
     args = parser.parse_args()
@@ -38,11 +38,10 @@ def main():
     client_credentials_manager = SpotifyClientCredentials(args.spotify_client_id, args.spotify_client_secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     with open(args.songs_json_file) as fp:
-        cipher = generate_cipher_text(args.input_text, json.load(fp))
+        cipher = generate_cipher(args.input_text, json.load(fp))
         for char in cipher:
             artist = char.get('song').get('artist')
             title = char.get('song').get('title')
-            sys.stderr.write(artist + " " + str(char.get('index')) + "\n")
             for preview_url in [x.get('preview_url') for x in sp.search(q=artist + " " + title, limit=10)['tracks']['items']]:
                 if preview_url:
                     print(preview_url + " " + str(char.get('index') + 1))

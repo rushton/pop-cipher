@@ -1,13 +1,31 @@
 #/bin/bash
-text=$1
-clip_length=${2:-5}
-k=""
-indexes=$(python pop_cipher.py $text --spotify-client-id=$SPOTIFY_CLIENT_ID --spotify-client-secret=$SPOTIFY_CLIENT_SECRET | awk '{print "curl ", $1, "> pop_cipher_"NR".mp3 && echo "$2}' | bash | awk '{printf "%s.", $1}')
 
+# input text
+text=$1
+
+# clip length in seconds
+clip_length=${2:-5}
+
+# custom songs json file, if not, uses the default provided
+songs_file=${3:-data.json}
+
+# run the pop_cipher python script to get the cipher and find the
+# spotify preview urls to download
+indexes=$(python pop_cipher.py $text --spotify-client-id=$SPOTIFY_CLIENT_ID --spotify-client-secret=$SPOTIFY_CLIENT_SECRET --songs-json-file $songs_file | awk '{print "curl ", $1, "> pop_cipher_"NR".mp3 && echo "$2}' | bash | awk '{printf "%s.", $1}')
+
+# generate the outfile name for the final mp3
+outfile=$(echo "cipher_"$(echo $indexes)"mp3")
 for file in $(find . -name "pop_cipher_*.mp3" | sort -n)
 do
+    # remove leading ./ from the file name
     f=$(echo $file |sed 's#\./##')
-    ffmpeg -y -t 5 -i $f -acodec copy fivesecs.$f &&  lame --decode fivesecs.$f -
-done | lame -a -b 96 - cipher_$(echo $indexes)mp3
+    # trim each mp3 to the specified clip_length
+    # then output the raw wav of the mp3
+    ffmpeg -y -t $clip_length -i $f -acodec copy clip.$f &&  lame --decode clip.$f -
+# concatenate the raw wav output into one mp3
+done | lame -a -b 96 - $outfile
 
-rm pop_cipher_*.mp3 fivesecs.*mp3
+# clean up the mess
+rm pop_cipher_*.mp3 clip.*mp3
+
+echo "Created clip file: "$outfile

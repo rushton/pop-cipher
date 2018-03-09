@@ -1,3 +1,61 @@
-![POP CHIPHER](popcipher.png)
+# POP CIPHER
 
-Pop cipher is a cipher using shared cultural knowledge and a private key.
+Pop cipher is a cipher using shared cultural knowledge via music.
+
+# Install
+
+requires ffmpeg and lame
+
+```
+pip install -r requirements.txt
+```
+
+# Usage
+
+## to encode a message
+```
+SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher <cipher-text> <clip-length-seconds>
+```
+
+example:
+
+```
+SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher "hi" 7
+```
+
+say the cipher chose:
+
+Rihanna - Birthday Cake
+  ^
+and
+
+Robin Thicke - Blurred Lines
+   ^
+
+the output mp3 file will be named: `cipher_3.4.mp3
+
+## to decode the message
+
+given the above example, we should have a 14 second mp3 with two 7 second clips. To do the decode:
+1. listen to a clip
+2. figure out who the artist is
+3. take the first index (3) from the file name
+4. match the index to the nth (3rd) charater of the artist's name
+5. repeat for each index/artist combo
+
+## Using your own songs
+
+to use a set of your own songs, write a file in the format:
+```
+[
+    {
+        "artist": "<artist>",
+        "title": "<title>"
+    }
+]
+```
+
+then pass the file to pop_cipher command:
+```
+SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher "hi" 7 my_songs_file.json
+```
