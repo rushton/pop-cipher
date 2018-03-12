@@ -29,10 +29,12 @@ Ri**h**anna - Birthday Cake
 
 and
 
-Rob**i**n Thicke - Blurred Lines
- 
+Br**i**tney Spears - Toxic
 
-the output mp3 file will be named: `cipher_3.4.mp3`
+
+the output mp3 file will be named: `cipher_3.3.mp3`
+
+take a listen [here](cipher_3.3.mp3)
 
 ## to decode the message
 
