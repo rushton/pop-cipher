@@ -34,7 +34,7 @@ Br**i**tney Spears - Toxic
 
 the output mp3 file will be named: `cipher_3.3.mp3`
 
-take a listen [here](cipher_3.3.mp3)
+take a listen [here](https://raw.githubusercontent.com/rushton/pop-cipher/master/cipher_3.3.mp3)
 
 ## to decode the message
 
