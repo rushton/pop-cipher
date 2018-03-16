@@ -31,7 +31,7 @@ songs_file=${songsfile:-data.json}
 banlist=${banlist:-none}
 
 # run the pop_cipher python script to get the cipher and find the
-# spotify preview urls to download
+# preview urls to download
 indexes=$(python pop_cipher.py $text --songs-json-file $songs_file --banlist $banlist | awk '{print "curl ", $1, "> pop_cipher_"NR".m4a && echo "$2}' | bash | awk '{printf "%s.", $1}')
 
 # generate the outfile name for the final mp3

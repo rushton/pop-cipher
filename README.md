@@ -14,13 +14,13 @@ pip install -r requirements.txt
 
 ## to encode a message
 ```
-SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher <cipher-text> <clip-length-seconds>
+./popcipher <cipher-text> <clip-length-seconds>
 ```
 
 example:
 
 ```
-SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher "hi" 7
+./popcipher "hi" 7
 ```
 
 say the cipher chose:
@@ -50,7 +50,7 @@ given the above example, we should have a 14 second mp3 with two 7 second clips.
 to prevent certain artists from appearing in the cipher, pass a space-separated list to the banlist flag, -b
 
 ```
-SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher -b Nickelback ICP "hi" 7
+./popcipher -b Nickelback ICP "hi" 7
 ```
 
 ## Using your own songs
@@ -68,5 +68,5 @@ to use a set of your own songs, write a file in the format:
 
 then pass the file to pop_cipher command with the -s flag:
 ```
-SPOTIFY_CLIENT_ID=xxx SPOTIFY_CLIENT_SECRET=xxx ./popcipher -s my_songs_file.json "hi" 7
+./popcipher -s my_songs_file.json "hi" 7
 ```
