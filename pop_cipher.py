@@ -8,46 +8,75 @@ import sys
 from sys import stderr
 
 MAX_SONG_SEARCH_ATTEMPTS = 5
-def generate_cipher(input_text, songs, banlist):
-    cipher = []
-    selected_songs = []
-    banned = False
 
-    for char in input_text:
-        if char == ' ': continue
-        song = None
-        search_attempt_count = 0
 
-        while not song:
-            shuffle(songs)
-            song = find_song(char, songs)
-            artist = song.get('song').get('artist')
+class PopCipher(object):
+    """
+        class for encrypting text using pop cipher
+    """
+    def __init__(self, songs, banlist):
+        """
+            Args:
+                songs - list[dict] of [{'title': <str>, 'artist': <str>}, ...]
+                banlist - list[str] - list of banned artists
+        """
+        self.songs = [s for s in songs if s.get('artist').lower() not in banlist]
 
-            for nope in banlist:
-                if nope.lower() in artist.lower():
-                    sys.stderr.write("Ew, " + artist + "\n")
-                    banned = True # get new song
+    def encrypt(self, input_text):
+        """
+            Args:
+                input_text - str
+            Return:
+                list[dict] - [{'song': {'title', <str>, 'artist': <str>}, 'index': <int>}, ...]
+        """
+        output = []
+        low_pri_songs = []
 
-            if not banned and artist + song.get('song').get('title') not in selected_songs:
-                cipher.append(song)
-                selected_songs.append(song.get('song').get('artist') + song.get('song').get('title'))
-            else:
-                song = None
+        for char in input_text:
+            if char == ' ':
+                continue
+            song = None
+            search_attempt_count = 0
 
-            search_attempt_count += 1
-            if search_attempt_count > MAX_SONG_SEARCH_ATTEMPTS:
-                sys.stderr.write("Not enough songs for cipher \n")
-                sys.exit()
+            while not song:
+                shuffle(self.songs)
+                shuffle(low_pri_songs)
+                high_pri_songs = [s for s in self.songs if s not in low_pri_songs]
+                song = self.find_song(char, high_pri_songs) or self.find_song(char, low_pri_songs)
 
-    return cipher
+                if song:
+                    output.append(song)
+                    if song not in low_pri_songs:
+                        low_pri_songs.append(song)
 
-def find_song(char, songs):
-    for song in songs:
-        for idx, song_char in enumerate(song.get('artist')):
-            if song_char.lower() == char.lower():
-                return {'song': song, 'index': idx}
+                search_attempt_count += 1
+                if search_attempt_count > MAX_SONG_SEARCH_ATTEMPTS:
+                    stderr.write("Not enough songs to encrypt \n")
+                    sys.exit()
+
+        return output
+
+    def find_song(self, char, songs):
+        """
+            given character, this function finds
+            a song where the artist name contains
+            the character.
+            Args:
+                char - str character to find in the list of songs
+            Return:
+                dict - {'song': {'title': <str>, 'artist': <str>}, 'index': <int>}
+        """
+        for song in songs:
+            index = song.get('artist').lower().find(char.lower())
+            if index >= 0:
+                return {'song': song, 'index': index}
+
+
 def main():
-    parser = ArgumentParser(description="Create cipher using pop music")
+    """
+        main func for pop cipher
+    """
+    parser = ArgumentParser(description="Encrypt text using pop music")
     parser.add_argument("input_text", type=str)
     parser.add_argument("--songs-json-file", type=str, default="data.json")
     parser.add_argument("--spotify-client-id", type=str, default=None)
@@ -55,21 +84,26 @@ def main():
     parser.add_argument("--banlist", nargs='+', default=[])
     args = parser.parse_args()
 
-    client_credentials_manager = SpotifyClientCredentials(args.spotify_client_id, args.spotify_client_secret)
-    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    with open(args.songs_json_file) as fp:
+    client_credentials_manager = SpotifyClientCredentials(
+        args.spotify_client_id,
+        args.spotify_client_secret
+    )
+    spotify_client = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    with open(args.songs_json_file) as songs_file:
         banlist = args.banlist
         if banlist == ["none"]:
             banlist = []
 
-        cipher = generate_cipher(args.input_text, json.load(fp), banlist)
-        for char in cipher:
+        output = PopCipher(json.load(songs_file), banlist).encrypt(args.input_text)
+        for char in output:
             artist = char.get('song').get('artist')
             title = char.get('song').get('title')
-            for preview_url in [x.get('preview_url') for x in sp.search(q=artist + " " + title, limit=10)['tracks']['items']]:
+            resp = spotify_client.search(q=artist + " " + title, limit=10)
+            for preview_url in [x.get('preview_url') for x in resp['tracks']['items']]:
                 if preview_url:
                     print(preview_url + " " + str(char.get('index') + 1))
                     break
+
 
 if __name__ == '__main__':
     main()
