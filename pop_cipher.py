@@ -71,6 +71,18 @@ class PopCipher(object):
             if index >= 0:
                 return {'song': song, 'index': index}
 
+def is_valid(songs, input_text):
+    """
+        Args:
+            songs - list[dict] of [{'title': <str>, 'artist': <str>}, ...]
+            input_text - str text to be encoded
+        Return:
+            bool - True if the text can be encoded given the list of songs
+    """
+    if set(input_text.lower()).issubset(set(''.join([x.get('artist') for x in songs]).lower())):
+        return True
+
+    return False
 
 def main():
     """
@@ -94,7 +106,12 @@ def main():
         if banlist == ["none"]:
             banlist = []
 
-        output = PopCipher(json.load(songs_file), banlist).encrypt(args.input_text)
+        songs = json.load(songs_file)
+        if not is_valid(songs, args.input_text):
+            stderr.write("Unable to encode text '%s' with songs list in: %s\n" % (args.input_text, args.songs_json_file))
+            sys.exit(1)
+
+        output = PopCipher(songs, banlist).encrypt(args.input_text)
         for char in output:
             artist = char.get('song').get('artist')
             title = char.get('song').get('title')
