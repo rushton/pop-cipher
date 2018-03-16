@@ -32,23 +32,25 @@ banlist=${banlist:-none}
 
 # run the pop_cipher python script to get the cipher and find the
 # spotify preview urls to download
-indexes=$(python pop_cipher.py $text --spotify-client-id=$SPOTIFY_CLIENT_ID --spotify-client-secret=$SPOTIFY_CLIENT_SECRET --songs-json-file $songs_file --banlist $banlist | awk '{print "curl ", $1, "> pop_cipher_"NR".mp3 && echo "$2}' | bash | awk '{printf "%s.", $1}')
+indexes=$(python pop_cipher.py $text --songs-json-file $songs_file --banlist $banlist | awk '{print "curl ", $1, "> pop_cipher_"NR".m4a && echo "$2}' | bash | awk '{printf "%s.", $1}')
 
 # generate the outfile name for the final mp3
 outfile=$(echo "cipher_"$(echo $indexes)"mp3")
 ffmpeg -y -f lavfi -i 'anoisesrc=color=white' -t 1 whitenoise.mp3
-for file in $(find . -name "pop_cipher_*.mp3" | sort -n)
+for file in $(find . -name "pop_cipher_*.m4a" | sort -n)
 do
     # remove leading ./ from the file name
     f=$(echo $file |sed 's#\./##')
-    # trim each mp3 to the specified clip_length
-    # then output the raw wav of the mp3
-    ffmpeg -y -t $clip_length -i $f -acodec copy clip.$f &&  lame --decode clip.$f -
+    # trim each m4a to the specified clip_length
+    # and convert to mp3, then output the raw wav
+    # of the mp3
+    ffmpeg -y -t $clip_length -i $file -acodec libmp3lame -q:a 2 out.mp3 && lame --decode out.mp3 -
+    # put some white noise between each song
     lame --decode whitenoise.mp3 -
 # concatenate the raw wav output into one mp3
 done | lame -a -b 96 - $outfile
 
 # clean up the mess
-rm pop_cipher_*.mp3 clip.*mp3 whitenoise.mp3
+rm pop_cipher_*.mp3 out.mp3 whitenoise.mp3
 
 echo "Created clip file: "$outfile

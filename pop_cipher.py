@@ -1,9 +1,8 @@
 from argparse import ArgumentParser
 import json
 from random import shuffle
+import requests
 
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
 import sys
 from sys import stderr
 
@@ -85,6 +84,19 @@ def is_valid(songs, input_text):
 
     return False
 
+def find_preview_url(artist, title):
+    """
+
+    """
+    search_term = {'term': artist + " " + title}
+    resp = requests.get("https://itunes.apple.com/search", params=search_term)
+
+    for preview_url in [x.get('previewUrl') for x in resp.json().get('results')]:
+        if preview_url:
+            return preview_url
+            break
+    raise Exception("Couldn't find preview url for: %s - %s" % (artist, title))
+
 def main():
     """
         main func for pop cipher
@@ -92,16 +104,9 @@ def main():
     parser = ArgumentParser(description="Encrypt text using pop music")
     parser.add_argument("input_text", type=str)
     parser.add_argument("--songs-json-file", type=str, default="data.json")
-    parser.add_argument("--spotify-client-id", type=str, default=None)
-    parser.add_argument("--spotify-client-secret", type=str, default=None)
     parser.add_argument("--banlist", nargs='+', default=[])
     args = parser.parse_args()
 
-    client_credentials_manager = SpotifyClientCredentials(
-        args.spotify_client_id,
-        args.spotify_client_secret
-    )
-    spotify_client = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     with open(args.songs_json_file) as songs_file:
         banlist = args.banlist
         if banlist == ["none"]:
@@ -117,11 +122,7 @@ def main():
             artist = char.get('song').get('artist')
             title = char.get('song').get('title')
             stderr.write("Chosen Song: %s - %s\n" % (artist, title))
-            resp = spotify_client.search(q=artist + " " + title, limit=10)
-            for preview_url in [x.get('preview_url') for x in resp['tracks']['items']]:
-                if preview_url:
-                    print(preview_url + " " + str(char.get('index') + 1))
-                    break
+            print(find_preview_url(artist, title)+ " " + str(char.get('index') + 1))
 
 
 if __name__ == '__main__':
