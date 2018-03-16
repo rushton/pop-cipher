@@ -1,402 +1,86 @@
 [
   {
-    "title": "Another Night",
-    "artist": "Real McCoy"
+    "title": "All Star",
+    "artist": "Smash Mouth"
   },
   {
-    "title": "Smooth",
-    "artist": "Santana Featuring Rob Thomas"
-  },
-  {
-    "title": "Hanging By A Moment",
-    "artist": "Lifehouse"
-  },
-  {
-    "title": "Apologize",
-    "artist": "Timbaland Featuring OneRepublic"
-  },
-  {
-    "title": "How You Remind Me",
-    "artist": "Nickelback"
-  },
-  {
-    "title": "Here Without You",
-    "artist": "3 Doors Down"
-  },
-  {
-    "title": "Don't Speak",
-    "artist": "No Doubt"
-  },
-  {
-    "title": "Iris",
-    "artist": "Goo Goo Dolls"
-  },
-  {
-    "title": "Closer",
-    "artist": "The Chainsmokers Featuring Halsey"
-  },
-  {
-    "title": "I LOVE YOU ALWAYS FOREVER",
-    "artist": "Donna Lewis"
-  },
-  {
-    "title": "One More Night",
-    "artist": "Maroon 5"
-  },
-  {
-    "title": "Wake Me Up!",
-    "artist": "Avicii"
-  },
-  {
-    "title": "TiK ToK",
-    "artist": "Ke$ha"
-  },
-  {
-    "title": "Slide",
-    "artist": "Goo Goo Dolls"
-  },
-  {
-    "title": "Name",
-    "artist": "Goo Goo Dolls"
-  },
-  {
-    "title": "Counting Stars",
-    "artist": "OneRepublic"
-  },
-  {
-    "title": "We Found Love",
-    "artist": "Rihanna Featuring Calvin Harris"
-  },
-  {
-    "title": "Two Princes",
-    "artist": "Spin Doctors"
-  },
-  {
-    "title": "Locked Out Of Heaven",
-    "artist": "Bruno Mars"
-  },
-  {
-    "title": "Uptown Funk!",
-    "artist": "Mark Ronson Featuring Bruno Mars"
-  },
-  {
-    "title": "Truly Madly Deeply",
-    "artist": "Savage Garden"
-  },
-  {
-    "title": "Kryptonite",
-    "artist": "3 Doors Down"
-  },
-  {
-    "title": "Dark Horse",
-    "artist": "Katy Perry Featuring Juicy J"
-  },
-  {
-    "title": "Since U Been Gone",
-    "artist": "Kelly Clarkson"
-  },
-  {
-    "title": "...Baby One More Time",
+    "title": "...Baby one more time",
     "artist": "Britney Spears"
   },
   {
-    "title": "The Way I Are",
-    "artist": "Timbaland Featuring Keri Hilson"
+    "title": "Don't Stop Believin'",
+    "artist": "Journey"
   },
   {
-    "title": "Because Of You",
-    "artist": "Kelly Clarkson"
+    "title": "Ignition (Remix)",
+    "artist": "R. Kelly"
   },
   {
-    "title": "Down",
-    "artist": "Jay Sean Featuring Lil Wayne"
+    "title": "Teenage Dream",
+    "artist": "Katy Perry"
   },
   {
-    "title": "Where Is The Love?",
-    "artist": "The Black Eyed Peas"
+    "title": "Wannabe",
+    "artist": "Spice Girls"
   },
   {
-    "title": "Shape Of You",
-    "artist": "Ed Sheeran"
+    "title": "Single Ladies",
+    "artist": "Beyoncé"
   },
   {
-    "title": "Moves Like Jagger",
-    "artist": "Maroon 5 Featuring Christina Aguilera"
-  },
-  {
-    "title": "Low",
-    "artist": "Flo Rida Featuring T-Pain"
-  },
-  {
-    "title": "You Were Meant For Me",
-    "artist": "Jewel"
-  },
-  {
-    "title": "With Arms Wide Open",
-    "artist": "Creed"
-  },
-  {
-    "title": "Party Rock Anthem",
-    "artist": "LMFAO Featuring Lauren Bennett & GoonRock"
-  },
-  {
-    "title": "Yeah!",
-    "artist": "Usher Featuring Lil Jon & Ludacris"
-  },
-  {
-    "title": "Blurred Lines",
-    "artist": "Robin Thicke Featuring T.I. + Pharrell"
-  },
-  {
-    "title": "Just The Way You Are",
-    "artist": "Bruno Mars"
-  },
-  {
-    "title": "Complicated",
-    "artist": "Avril Lavigne"
-  },
-  {
-    "title": "Missing",
-    "artist": "Everything But The Girl"
-  },
-  {
-    "title": "I Know",
-    "artist": "Dionne Farris"
-  },
-  {
-    "title": "Whatcha Say",
-    "artist": "Jason Derulo"
-  },
-  {
-    "title": "Don't Let Go (Love)",
-    "artist": "En Vogue"
-  },
-  {
-    "title": "Lights",
-    "artist": "Ellie Goulding"
-  },
-  {
-    "title": "Far Away",
-    "artist": "Nickelback"
-  },
-  {
-    "title": "Big Girls Don't Cry",
-    "artist": "Fergie"
-  },
-  {
-    "title": "Run It!",
-    "artist": "Chris Brown"
+    "title": "All I Want for Christmas Is You",
+    "artist": "Mariah Carey"
   },
   {
     "title": "Bad Romance",
     "artist": "Lady Gaga"
   },
   {
-    "title": "I Knew You Were Trouble.",
+    "title": "Rolling in the Deep",
+    "artist": "Adele"
+  },
+  {
+    "title": "Shake it Off",
     "artist": "Taylor Swift"
   },
   {
-    "title": "Gives You Hell",
-    "artist": "The All-American Rejects"
+    "title": "Bohemian Rhapsody",
+    "artist": "Queen"
   },
   {
-    "title": "How Do You Talk To An Angel",
-    "artist": "The Heights"
+    "title": "All the small things",
+    "artist": "Blink-182"
   },
   {
-    "title": "The Reason",
-    "artist": "Hoobastank"
+    "title": "Party in the USA",
+    "artist": "Miley Cyrus"
   },
   {
-    "title": "Semi-Charmed Life",
-    "artist": "Third Eye Blind"
-  },
-  {
-    "title": "Dynamite",
-    "artist": "Taio Cruz"
-  },
-  {
-    "title": "Bent",
-    "artist": "matchbox twenty"
-  },
-  {
-    "title": "Stereo Hearts",
-    "artist": "Gym Class Heroes Featuring Adam Levine"
-  },
-  {
-    "title": "I Knew I Loved You",
-    "artist": "Savage Garden"
-  },
-  {
-    "title": "Cheap Thrills",
-    "artist": "Sia Featuring Sean Paul"
-  },
-  {
-    "title": "Leavin'",
-    "artist": "Jesse McCartney"
-  },
-  {
-    "title": "Hey Ya!",
-    "artist": "OutKast"
-  },
-  {
-    "title": "The Sign",
-    "artist": "Ace Of Base"
-  },
-  {
-    "title": "DJ Got Us Fallin' In Love",
-    "artist": "Usher Featuring Pitbull"
-  },
-  {
-    "title": "Kiss From A Rose",
-    "artist": "Seal"
-  },
-  {
-    "title": "Good Feeling",
-    "artist": "Flo Rida"
-  },
-  {
-    "title": "Love Yourself",
-    "artist": "Justin Bieber"
-  },
-  {
-    "title": "Everything You Want",
-    "artist": "Vertical Horizon"
-  },
-  {
-    "title": "You Belong With Me",
-    "artist": "Taylor Swift"
-  },
-  {
-    "title": "Just A Dream",
-    "artist": "Nelly"
-  },
-  {
-    "title": "Promiscuous",
-    "artist": "Nelly Furtado Featuring Timbaland"
-  },
-  {
-    "title": "Lovefool",
-    "artist": "The Cardigans"
-  },
-  {
-    "title": "Fly",
-    "artist": "Sugar Ray"
-  },
-  {
-    "title": "Give Me Everything",
-    "artist": "Pitbull Featuring Ne-Yo, Afrojack & Nayer"
-  },
-  {
-    "title": "In The End",
-    "artist": "Linkin Park"
-  },
-  {
-    "title": "Hold My Hand",
-    "artist": "Hootie & The Blowfish"
-  },
-  {
-    "title": "Torn",
-    "artist": "Natalie Imbruglia"
-  },
-  {
-    "title": "Stay (I Missed You)",
-    "artist": "Lisa Loeb & Nine Stories"
-  },
-  {
-    "title": "Don't Turn Around",
-    "artist": "Ace Of Base"
-  },
-  {
-    "title": "Bye Bye Bye",
-    "artist": "'N Sync"
-  },
-  {
-    "title": "Bleeding Love",
-    "artist": "Leona Lewis"
-  },
-  {
-    "title": "All That She Wants",
-    "artist": "Ace Of Base"
-  },
-  {
-    "title": "Don't Let Me Down",
-    "artist": "The Chainsmokers Featuring Daya"
-  },
-  {
-    "title": "Boom Boom Pow",
-    "artist": "The Black Eyed Peas"
-  },
-  {
-    "title": "Dilemma",
-    "artist": "Nelly Featuring Kelly Rowland"
-  },
-  {
-    "title": "I'm With You",
-    "artist": "Avril Lavigne"
-  },
-  {
-    "title": "Stitches",
-    "artist": "Shawn Mendes"
-  },
-  {
-    "title": "Shut Up And Dance",
-    "artist": "WALK THE MOON"
-  },
-  {
-    "title": "I Gotta Feeling",
-    "artist": "The Black Eyed Peas"
-  },
-  {
-    "title": "All Star",
-    "artist": "Smash Mouth"
-  },
-  {
-    "title": "DREAMLOVER",
-    "artist": "Mariah Carey"
-  },
-  {
-    "title": "Blank Space",
-    "artist": "Taylor Swift"
-  },
-  {
-    "title": "My Love",
-    "artist": "Justin Timberlake Featuring T.I."
-  },
-  {
-    "title": "We Belong Together",
-    "artist": "Mariah Carey"
-  },
-  {
-    "title": "Hips Don't Lie",
-    "artist": "Shakira Featuring Wyclef Jean"
-  },
-  {
-    "title": "Bring Me To Life",
-    "artist": "Evanescence Featuring Paul McCoy"
-  },
-  {
-    "title": "Unwritten",
-    "artist": "Natasha Bedingfield"
-  },
-  {
-    "title": "Underneath It All",
-    "artist": "No Doubt Featuring Lady Saw"
-  },
-  {
-    "title": "Genie In A Bottle",
-    "artist": "Christina Aguilera"
-  },
-  {
-    "title": "On Bended Knee",
-    "artist": "Boyz II Men"
-  },
-  {
-    "title": "Ironic",
-    "artist": "Alanis Morissette"
+    "title": "TiK ToK",
+    "artist": "Ke$ha"
   },
   {
     "title": "Lose Yourself",
     "artist": "Eminem"
+  },
+  {
+    "title": "Barbie Girl",
+    "artist": "Aqua"
+  },
+  {
+    "title": "No Scrubs",
+    "artist": "TLC"
+  },
+  {
+    "title": "Hey Ya",
+    "artist": "Outkast"
+  },
+  {
+    "title": "Hollaback Girl",
+    "artist": "Gwen Stefani"
+  },
+  {
+    "title": "Sharp Dressed Man",
+    "artist": "ZZ Top"
   }
 ]
