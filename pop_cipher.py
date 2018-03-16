@@ -67,9 +67,10 @@ class PopCipher(object):
                 dict - {'song': {'title': <str>, 'artist': <str>}, 'index': <int>}
         """
         for song in songs:
-            index = song.get('artist').lower().find(char.lower())
-            if index >= 0:
-                return {'song': song, 'index': index}
+            indexes = [i for (i,c) in enumerate(song.get('artist').lower()) if c == char.lower()]
+            shuffle(indexes)
+            if len(indexes) > 0:
+                return {'song': song, 'index': indexes[0]}
 
 def is_valid(songs, input_text):
     """
