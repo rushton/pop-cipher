@@ -116,6 +116,7 @@ def main():
         for char in output:
             artist = char.get('song').get('artist')
             title = char.get('song').get('title')
+            stderr.write("Chosen Song: %s - %s\n" % (artist, title))
             resp = spotify_client.search(q=artist + " " + title, limit=10)
             for preview_url in [x.get('preview_url') for x in resp['tracks']['items']]:
                 if preview_url:
