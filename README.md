@@ -4,7 +4,11 @@ Pop cipher is a cipher using shared cultural knowledge via music.
 
 # Install
 
-requires ffmpeg and lame
+requires ffmpeg and lame:
+On Mac OSX:
+```
+brew install ffmpeg lame
+```
 
 ```
 pip install -r requirements.txt
