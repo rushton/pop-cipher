@@ -32,10 +32,13 @@ an example output might be:
 ```
 Chosen Song: Rihanna - Birthday Cake
 Chosen Song: Britney Spears - Toxic
+...
 ```
 
 where the following letters were chosen for encoding:
+
 Chosen Song: Ri**h**anna - Birthday Cake
+
 Chosen Song: Br**i**tney Spears - Toxic
 
 the output mp3 file will be named: `cipher_3.3.mp3`
