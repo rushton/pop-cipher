@@ -5,6 +5,7 @@ Pop cipher is a cipher using shared cultural knowledge via music.
 # Install
 
 requires ffmpeg and lame:
+
 On Mac OSX:
 ```
 brew install ffmpeg lame
@@ -27,14 +28,19 @@ example:
 ./popcipher "hi" 7
 ```
 
-say the cipher chose:
+an example output might be:
 
-Ri**h**anna - Birthday Cake
+```
+Chosen Song: Rihanna - Birthday Cake
+Chosen Song: Britney Spears - Toxic
+...
+```
 
-and
+where the following letters were chosen for encoding:
 
-Br**i**tney Spears - Toxic
+Chosen Song: Ri**h**anna - Birthday Cake
 
+Chosen Song: Br**i**tney Spears - Toxic
 
 the output mp3 file will be named: `cipher_3.3.mp3`
 
@@ -42,7 +48,7 @@ take a listen [here](https://raw.githubusercontent.com/rushton/pop-cipher/master
 
 ## to decode the message
 
-given the above example, we should have a 14 second mp3 with two 7 second clips. To do the decode:
+given the above example, we created a 14 second mp3 with two 7 second clips. To do the decode:
 1. listen to a clip
 2. figure out who the artist is
 3. take the first index (3) from the file name

@@ -13,13 +13,12 @@ class PopCipher(object):
     """
         class for encrypting text using pop cipher
     """
-    def __init__(self, songs, banlist):
+    def __init__(self, songs):
         """
             Args:
                 songs - list[dict] of [{'title': <str>, 'artist': <str>}, ...]
-                banlist - list[str] - list of banned artists
         """
-        self.songs = [s for s in songs if s.get('artist').lower() not in banlist]
+        self.songs = songs
 
     def encrypt(self, input_text):
         """
@@ -34,24 +33,16 @@ class PopCipher(object):
         for char in input_text:
             if char == ' ':
                 continue
-            song = None
-            search_attempt_count = 0
 
-            while not song:
-                shuffle(self.songs)
-                shuffle(low_pri_songs)
-                high_pri_songs = [s for s in self.songs if s not in low_pri_songs]
-                song = self.find_song(char, high_pri_songs) or self.find_song(char, low_pri_songs)
+            shuffle(self.songs)
+            shuffle(low_pri_songs)
+            high_pri_songs = [s for s in self.songs if s not in low_pri_songs]
+            song = self.find_song(char, high_pri_songs) or self.find_song(char, low_pri_songs)
 
-                if song:
-                    output.append(song)
-                    if song not in low_pri_songs:
-                        low_pri_songs.append(song)
-
-                search_attempt_count += 1
-                if search_attempt_count > MAX_SONG_SEARCH_ATTEMPTS:
-                    stderr.write("Not enough songs to encrypt \n")
-                    sys.exit()
+            if song:
+                output.append(song)
+                if song not in low_pri_songs:
+                    low_pri_songs.append(song.get('song'))
 
         return output
 
@@ -66,10 +57,11 @@ class PopCipher(object):
                 dict - {'song': {'title': <str>, 'artist': <str>}, 'index': <int>}
         """
         for song in songs:
-            indexes = [i for (i,c) in enumerate(song.get('artist').lower()) if c == char.lower()]
+            indexes = [i for (i, c) in enumerate(song.get('artist').lower()) if c == char.lower()]
             shuffle(indexes)
             if len(indexes) > 0:
                 return {'song': song, 'index': indexes[0]}
+
 
 def is_valid(songs, input_text):
     """
@@ -80,6 +72,7 @@ def is_valid(songs, input_text):
             bool - True if the text can be encoded given the list of songs
     """
     return set(input_text.lower()).issubset(set(''.join([x.get('artist') for x in songs]).lower()))
+
 
 def find_preview_url(artist, title):
     """
@@ -94,6 +87,7 @@ def find_preview_url(artist, title):
             break
     raise Exception("Couldn't find preview url for: %s - %s" % (artist, title))
 
+
 def main():
     """
         main func for pop cipher
@@ -105,21 +99,21 @@ def main():
     args = parser.parse_args()
 
     with open(args.songs_json_file) as songs_file:
-        banlist = args.banlist
+        banlist = [artist.lower() for artist in args.banlist]
         if banlist == ["none"]:
             banlist = []
 
-        songs = json.load(songs_file)
+        songs = [song for song in json.load(songs_file) if song.get('artist').lower() not in banlist]
         if not is_valid(songs, args.input_text):
             stderr.write("Unable to encode text '%s' with songs list in: %s\n" % (args.input_text, args.songs_json_file))
             sys.exit(1)
 
-        output = PopCipher(songs, banlist).encrypt(args.input_text)
+        output = PopCipher(songs).encrypt(args.input_text)
         for char in output:
             artist = char.get('song').get('artist')
             title = char.get('song').get('title')
             stderr.write("Chosen Song: %s - %s\n" % (artist, title))
-            print(find_preview_url(artist, title)+ " " + str(char.get('index') + 1))
+            print(find_preview_url(artist, title) + " " + str(char.get('index') + 1))
 
 
 if __name__ == '__main__':
