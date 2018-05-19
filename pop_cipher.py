@@ -79,10 +79,7 @@ def is_valid(songs, input_text):
         Return:
             bool - True if the text can be encoded given the list of songs
     """
-    if set(input_text.lower()).issubset(set(''.join([x.get('artist') for x in songs]).lower())):
-        return True
-
-    return False
+    return set(input_text.lower()).issubset(set(''.join([x.get('artist') for x in songs]).lower()))
 
 def find_preview_url(artist, title):
     """

@@ -1,5 +1,4 @@
 #/bin/bash
-
 while getopts ":b:s:" opt; do
   case ${opt} in
     b )
@@ -51,6 +50,6 @@ do
 done | lame -a -b 96 - $outfile
 
 # clean up the mess
-rm pop_cipher_*.mp3 out.mp3 whitenoise.mp3
+rm pop_cipher_*.m4a out.mp3 whitenoise.mp3
 
 echo "Created clip file: "$outfile
